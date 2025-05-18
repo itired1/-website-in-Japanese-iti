@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>itired japan aka スタイル - sutairu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="sakura-loader">
+            <div class="petal" style="top: 40px; left: 40px; animation-delay: 0s;"></div>
+            <div class="petal" style="top: 20px; left: 60px; animation-delay: 0.2s;"></div>
+            <div class="petal" style="top: 60px; left: 60px; animation-delay: 0.4s;"></div>
+            <div class="petal" style="top: 40px; left: 20px; animation-delay: 0.6s;"></div>
+            <div class="petal" style="top: 60px; left: 20px; animation-delay: 0.8s;"></div>
+        </div>
+        <p class="loading-text">Загрузка...</p>
+    </div>
+
+    <!-- Модальное окно авторизации -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <span class="close-auth">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Вход</button>
+                <button class="auth-tab" data-tab="register">Регистрация</button>
+            </div>
+            
+            <div class="auth-content" id="login">
+                <h3>Вход в аккаунт</h3>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" id="loginEmail" placeholder="Ваш email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="loginPassword" placeholder="Пароль" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <button type="submit" class="form-btn">Войти</button>
+                </form>
+            </div>
+            
+            <div class="auth-content" id="register" style="display:none;">
+                <h3>Регистрация</h3>
+                <form id="registerForm">
+                    <div class="input-group">
+                        <input type="text" id="regName" placeholder="Ваше имя" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="regEmail" placeholder="Ваш email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="regPassword" placeholder="Пароль" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="regConfirm" placeholder="Повторите пароль" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <button type="submit" class="form-btn">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно настроек -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-container">
+            <span class="close-settings">&times;</span>
+            <h2>Настройки профиля</h2>
+            
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="avatar-tab">
+                    <i class="fas fa-user-circle"></i> Аватар
+                </button>
+                <button class="settings-tab" data-tab="background-tab">
+                    <i class="fas fa-image"></i> Фон
+                </button>
+                <button class="settings-tab" data-tab="theme-tab">
+                    <i class="fas fa-palette"></i> Тема
+                </button>
+            </div>
+            
+            <div class="settings-content active" id="avatar-tab">
+                <div class="avatar-upload">
+                    <div class="avatar-preview" id="avatarPreview">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <input type="file" id="avatarUpload" accept="image/*">
+                    <label for="avatarUpload" class="upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> Выбрать изображение
+                    </label>
+                    <button class="reset-btn" id="resetAvatar">
+                        <i class="fas fa-trash-alt"></i> Удалить
+                    </button>
+                </div>
+            </div>
+            
+            <div class="settings-content" id="background-tab">
+                <div class="bg-upload">
+                    <div class="bg-preview" id="bgPreview"></div>
+                    <input type="file" id="bgUpload" accept="image/*">
+                    <label for="bgUpload" class="upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> Выбрать фон
+                    </label>
+                    <button class="reset-btn" id="resetBg">
+                        <i class="fas fa-trash-alt"></i> Сбросить фон
+                    </button>
+                </div>
+            </div>
+            
+            <div class="settings-content" id="theme-tab">
+                <div class="theme-options">
+                    <div class="theme-option" data-theme="default">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #fff5f6, #ffd3d3);"></div>
+                        <p>Стандартная</p>
+                    </div>
+                    <div class="theme-option" data-theme="dark">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #1a1a2e, #16213e);"></div>
+                        <p>Тёмная</p>
+                    </div>
+                    <div class="theme-option" data-theme="sakura">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #ffb6c1, #ffc0cb);"></div>
+                        <p>Сакура</p>
+                    </div>
+                    <div class="theme-option" data-theme="ocean">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #1e90ff, #00bfff);"></div>
+                        <p>Океан</p>
+                    </div>
+                    <div class="theme-option" data-theme="forest">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #228b22, #2e8b57);"></div>
+                        <p>Лес</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-footer">
+                <button id="saveSettings" class="save-btn">
+                    <i class="fas fa-save"></i> Сохранить изменения
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно корзины -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-container">
+            <span class="close-cart">&times;</span>
+            <h2>Ваша корзина</h2>
+            <div class="cart-items">
+                <!-- Товары будут добавляться динамически -->
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Ваша корзина пуста</p>
+                </div>
+            </div>
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cartTotalPrice">0 ₽</span>
+            </div>
+            <button id="checkoutBtn" class="checkout-btn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно личного кабинета -->
+    <div class="account-modal" id="accountModal">
+        <div class="account-container">
+            <span class="close-account">&times;</span>
+            <h2>Личный кабинет</h2>
+            
+            <div class="account-tabs">
+                <button class="account-tab active" data-tab="orders">Мои заказы</button>
+                <button class="account-tab" data-tab="tracking">Отслеживание</button>
+                <button class="account-tab" data-tab="details">Личные данные</button>
+            </div>
+            
+            <div class="account-content active" id="orders">
+                <div class="orders-list">
+                    <div class="no-orders">
+                        <i class="fas fa-box-open"></i>
+                        <p>У вас пока нет заказов</p>
+                        <a href="#sssss" class="btn">Перейти в магазин</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="account-content" id="tracking">
+                <div class="tracking-info">
+                    <div class="no-tracking">
+                        <i class="fas fa-truck"></i>
+                        <p>Нет активных заказов для отслеживания</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="account-content" id="details">
+                <form id="accountForm">
+                    <div class="input-group">
+                        <label>Имя</label>
+                        <input type="text" id="accountName" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="accountEmail" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Телефон</label>
+                        <input type="tel" id="accountPhone">
+                    </div>
+                    <div class="input-group">
+                        <label>Адрес</label>
+                        <textarea id="accountAddress"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Сохранить изменения</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero" id="heroBackground">
+        <div class="hero-content">
+            <h1>Добро пожаловать в <span class="japanese-text">スタイル</span> (sutairu)</h1>
+            <p>Откройте для себя гармонию японской моды в современном исполнении</p>
+            <button class="scroll-btn">Исследовать <i class="fas fa-chevron-down"></i></button>
+        </div>
+    </section>
+
+    <nav class="torii-menu">
+        <div class="torii-container">
+            <div class="torii-gate"></div>
+        </div>
+        <ul>
+            <li><a href="#shop"><i class="fas fa-store"></i> Магазин</a></li>
+            <li><a href="#sssss"><i class="fas fa-tshirt"></i> Коллекции</a></li>
+            <li><a href="#story"><i class="fas fa-scroll"></i> История</a></li>
+            <li><a href="#contacts"><i class="fas fa-envelope"></i> Контакты</a></li>
+            <li class="user-profile-item">
+                <div class="avatar-preview" id="userAvatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <a href="#account" id="settingsLink"><i class="fas fa-cog"></i> Настройки</a>
+                    <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                </div>
+            </li>
+            <li class="night-mode-toggle"><a href="#" id="nightModeToggle"><i class="fas fa-moon"></i> Ночной режим</a></li>
+        </ul>
+    </nav>
+
+    <!-- Иконка корзины -->
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <section class="tea-house">
+        <div class="container">
+            <div class="scroll-form">
+                <h2>Эксклюзивная коллекция "Sutairu"</h2>
+                <p>Откройте для себя уникальные дизайны, вдохновленные японской уличной модой и современными трендами</p>
+                <div class="collection-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-tshirt"></i>
+                        <p>Ограниченные серии</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-star"></i>
+                        <p>Премиальное качество</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-truck"></i>
+                        <p>Быстрая доставка</p>
+                    </div>
+                </div>
+                <a href="#sssss" class="form-btn">Смотреть коллекцию</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="scroll-progress"></div>
+    <div class="wave-divider">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+        <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,233.88-22.45V0Z" class="shape-fill"></path>
+      </svg>
+    </div>
+
+    <section class="products" id="shop">
+        <div class="container">
+            <h2 class="section-title">Наши товары</h2>
+            <div class="sakura-forest">
+                <div class="tree" data-product="1">
+                    <div class="product-info">
+                        <h3>Штаны стандофф</h3>
+                        <p>12,990 ₽</p>
+                    </div>
+                </div>
+                <div class="tree" data-product="2">
+                    <div class="product-info">
+                        <h3>Кепка стандофф</h3>
+                        <p>3,490 ₽</p>
+                    </div>
+                </div>
+                <div class="tree" data-product="3">
+                    <div class="product-info">
+                        <h3>Кофта стандофф</h3>
+                        <p>8,790 ₽</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brand-story" id="story">
+        <div class="container">
+            <h2 class="section-title">Наша история</h2>
+            <div class="story-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3>Основание компании</h3>
+                        <p>Начало нашего пути в маленькой квартире с водным</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>Первая коллекция</h3>
+                        <p>Где-то в голове она уже есть</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025-....</div>
+                    <div class="timeline-content">
+                        <h3>Ну пока простой но норм</h3>
+                        <p>Я ДАУН ИГРАЮ В АПЕКС</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bit-fashion">
+        <div class="container">
+            <h2 class="section-title">8-BIT ЯПОНСКАЯ МОДА</h2>
+            <div class="bit-outfits">
+                <div class="bit-outfit">
+                    <img src="images/8bit/kimono.png" alt="8-bit кимоно">
+                    <p>Традиционное кимоно</p>
+                </div>
+                <div class="bit-outfit">
+                    <img src="images/8bit/samurai.png" alt="8-bit самурай">
+                    <p>Самурайский стиль</p>
+                </div>
+                <div class="bit-outfit">
+                    <img src="images/8bit/streetwear.png" alt="8-bit стритвир">
+                    <p>Уличная мода</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection" id="sssss">
+        <div class="container">
+            <h2 class="collection-title">Коллекция</h2>
+            
+            <div class="collection-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="model">Верх</button>
+                <button class="filter-btn" data-filter="part">Низ</button>
+                <button class="filter-btn" data-filter="merch">Аксессуары</button>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card" data-category="model">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/8a/30/0f/8a300f867e7da4bba7a9e6f3bb38bfe7.jpg" alt="Футболка">
+                        <span class="product-badge">Новинка</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Футболка "Японский стиль"</h3>
+                        <p class="product-description">Легендарный японский дизайн в современном исполнении.</p>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">3,490 ₽</span>
+                                <span class="old-price">4,990 ₽</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Купить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="model">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/e0/e5/02/e0e50281893509abb798e339bc1ff445.jpg" alt="Кофта">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Кофта "Сакура"</h3>
+                        <p class="product-description">Теплая кофта с цветочным принтом.</p>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">8,790 ₽</span>
+                                <span class="old-price">9,990 ₽</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Купить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="part">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/95/d3/53/95d3533c93b260ad741a0c3244018589.jpg" alt="Штаны">
+                        <span class="product-badge">Хит</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Штаны "Уличный стиль"</h3>
+                        <p class="product-description">Удобные штаны в японском стиле.</p>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">12,990 ₽</span>
+                                <span class="old-price">14,990 ₽</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Купить
+                            </button>
+                        </div>
+                    </div>
+                </div>                       
+                
+                <div class="product-card" data-category="merch">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/84/a6/e1/84a6e14cf28256b40e0c5aa2cd958bf6.jpg" alt="Кепка">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Кепка "Япония"</h3>
+                        <p class="product-description">Стильная кепка с японскими иероглифами.</p>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">2,490 ₽</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Купить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscription">
+        <div class="container">
+            <div class="crane-form">
+                <h2>Подпишитесь на новости</h2>
+                <p>Получайте эксклюзивные предложения и новости о наших коллекциях</p>
+                <form>
+                    <div class="input-group">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="stone-garden" id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Санкт-Петербург, Россия</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+7 (495) 123-45-67</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@sutairu.com</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 10:00 - 20:00</p>
+                    <p>Сб-Вс: 11:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <div class="social-links">
+                        <a href="https://vk.com/sutairu_brand"><i class="fab fa-vk"></i></a>
+                        <a href="https://web.telegram.org/k/#@ifaq2"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025. Все права защищены.</p>
+                <p>Спасибо, что выбрали нас!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
