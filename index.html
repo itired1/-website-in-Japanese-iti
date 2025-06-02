@@ -169,7 +169,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно личного кабинета -->
     <div class="account-modal" id="accountModal">
         <div class="account-container">
             <span class="close-account">&times;</span>
@@ -223,6 +222,45 @@
             </div>
         </div>
     </div>
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo">スタイル</a>
+                <div class="nav-links">
+                    <a href="#heroBackground" class="nav-link active">Главная</a>
+                    <a href="#sssss" class="nav-link">Коллекции</a>
+                    <a href="#story" class="nav-link">История</a>
+                    <a href="#contacts" class="nav-link">Контакты</a>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Поиск...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="user-actions">
+                        <div class="user-profile-item">
+                            <div class="avatar-preview" id="userAvatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="profile-dropdown" id="profileDropdown">
+                                <a href="#account" id="settingsLink"><i class="fas fa-cog"></i> Настройки</a>
+                                <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+                            </div>
+                        </div>
+                        <div class="cart-icon-mini" id="cartIconMini">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count-mini">0</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
     <section class="hero" id="heroBackground">
         <div class="hero-content">
@@ -231,30 +269,6 @@
             <button class="scroll-btn">Исследовать <i class="fas fa-chevron-down"></i></button>
         </div>
     </section>
-
-    <nav class="torii-menu">
-        <div class="torii-container">
-            <div class="torii-gate"></div>
-        </div>
-        <ul>
-            <li><a href="#shop"><i class="fas fa-store"></i> Магазин</a></li>
-            <li><a href="#sssss"><i class="fas fa-tshirt"></i> Коллекции</a></li>
-            <li><a href="#story"><i class="fas fa-scroll"></i> История</a></li>
-            <li><a href="#contacts"><i class="fas fa-envelope"></i> Контакты</a></li>
-            <li class="user-profile-item">
-                <div class="avatar-preview" id="userAvatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="profile-dropdown" id="profileDropdown">
-                    <a href="#account" id="settingsLink"><i class="fas fa-cog"></i> Настройки</a>
-                    <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Выйти</a>
-                </div>
-            </li>
-            <li class="night-mode-toggle"><a href="#" id="nightModeToggle"><i class="fas fa-moon"></i> Ночной режим</a></li>
-        </ul>
-    </nav>
-
-    <!-- Иконка корзины -->
     <div class="cart-icon" id="cartIcon">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">0</span>
