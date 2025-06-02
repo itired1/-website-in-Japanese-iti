@@ -2832,9 +2832,7 @@ body.theme-forest {
     background: var(--color-card);
     min-width: 200px;
     box-shadow: var(--shadow-lg);
-   /* Добавленные стили для улучшения UI/UX */
-
-/* Анимации */
+  
 @keyframes rotate {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -2845,7 +2843,6 @@ body.theme-forest {
   50% { transform: scale(1.05); }
 }
 
-/* Улучшения для навигации */
 .nav-toggle {
   display: none;
   background: none;
@@ -2864,7 +2861,6 @@ body.theme-forest {
   transition: all 0.3s ease;
 }
 
-/* Адаптивное меню */
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;
@@ -2903,7 +2899,6 @@ body.theme-forest {
   }
 }
 
-/* Улучшения для карточек товаров */
 .product-card {
   position: relative;
   overflow: hidden;
@@ -2929,7 +2924,6 @@ body.theme-forest {
   animation: pulse 2s infinite;
 }
 
-/* Эффекты для кнопок */
 .btn, .add-to-cart, .form-btn {
   position: relative;
   overflow: hidden;
@@ -2959,12 +2953,10 @@ body.theme-forest {
   transform: translateX(5px);
 }
 
-/* Улучшения для формы */
 .input-group input:focus {
   box-shadow: 0 0 0 2px var(--color-primary-light);
 }
 
-/* Анимация для timeline */
 .timeline-item {
   opacity: 0;
   transform: translateY(30px);
@@ -2976,12 +2968,10 @@ body.theme-forest {
   transform: translateY(0);
 }
 
-/* Эффекты для footer */
 .social-links a:hover {
   transform: translateY(-5px) scale(1.2);
 }
 
-/* Дополнительные стили для модальных окон */
 .modal {
   backdrop-filter: blur(5px);
 }
@@ -2990,7 +2980,6 @@ body.theme-forest {
   animation: modalFadeIn 0.3s ease-out;
 }
 
-/* Анимация для прелоадера */
 .preloader {
   animation: fadeOut 1s ease 2s forwards;
 }
@@ -2999,7 +2988,6 @@ body.theme-forest {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* Улучшения для скроллбара */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -3014,7 +3002,6 @@ body.theme-forest {
   background: var(--color-primary-dark);
 }
 
-/* Эффекты для деревьев сакуры */
 .tree:hover::before {
   animation: sway 3s infinite ease-in-out;
 }
@@ -3024,7 +3011,6 @@ body.theme-forest {
   50% { transform: translateX(-50%) rotate(5deg); }
 }
 
-/* Адаптивные улучшения */
 @media (max-width: 576px) {
   .hero h1 {
     font-size: 2rem;
@@ -3044,7 +3030,6 @@ body.theme-forest {
   }
 }
 
-/* Дополнительные эффекты для кнопки корзины */
 .cart-icon {
   animation: float 3s ease-in-out infinite;
 }
@@ -3054,7 +3039,6 @@ body.theme-forest {
   50% { transform: translateY(-10px); }
 }
 
-/* Улучшения для уведомлений */
 .notification {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
