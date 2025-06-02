@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Preloader
     window.addEventListener('load', function() {
         const preloader = document.querySelector('.preloader');
         setTimeout(() => {
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     });
 
-    // Sakura petals animation
     function createSakuraPetals() {
         const heroSection = document.querySelector('.hero');
         const petalCount = 15;
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Mobile menu toggle
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.querySelector('.nav-links');
     
@@ -45,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.classList.toggle('active');
     });
 
-    // Close mobile menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
@@ -53,13 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Auth and account management
     const authModal = document.getElementById('authModal');
     const accountModal = document.getElementById('accountModal');
     const userAvatar = document.getElementById('userAvatar');
     const profileDropdown = document.getElementById('profileDropdown');
     
-    // Check auth status on page load
     function checkAuthStatus() {
         const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
         
@@ -73,19 +67,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Generate random color for avatar
     function getRandomColor() {
         const colors = ['#ff7675', '#74b9ff', '#55efc4', '#a29bfe', '#ffeaa7'];
         return colors[Math.floor(Math.random() * colors.length)];
     }
     
-    // Toggle auth modal
     function toggleAuthModal() {
         authModal.style.display = authModal.style.display === 'block' ? 'none' : 'block';
         document.body.style.overflow = authModal.style.display === 'block' ? 'hidden' : 'auto';
     }
     
-    // Toggle account modal
     function toggleAccountModal() {
         if (localStorage.getItem('userLoggedIn') === 'true') {
             accountModal.style.display = accountModal.style.display === 'block' ? 'none' : 'block';
@@ -97,14 +88,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Login form handler
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
         
         if (email && password) {
-            // Simulate login (in real app, you would call API)
             localStorage.setItem('userLoggedIn', 'true');
             localStorage.setItem('userEmail', email);
             localStorage.setItem('userName', email.split('@')[0]);
@@ -117,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Registration form handler
     document.getElementById('registerForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('regName').value;
@@ -131,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (name && email && password) {
-            // Simulate registration (in real app, you would call API)
             localStorage.setItem('userLoggedIn', 'true');
             localStorage.setItem('userName', name);
             localStorage.setItem('userEmail', email);
@@ -144,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Logout handler
     document.getElementById('logoutLink').addEventListener('click', function(e) {
         e.preventDefault();
         if (confirm('Вы уверены, что хотите выйти?')) {
@@ -157,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Load account details
     function loadAccountDetails() {
         const saved = localStorage.getItem('userAccountDetails');
         if (saved) {
@@ -171,13 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error loading account details:', e);
             }
         } else {
-            // Set default values from registration
             document.getElementById('accountName').value = localStorage.getItem('userName') || '';
             document.getElementById('accountEmail').value = localStorage.getItem('userEmail') || '';
         }
     }
     
-    // Save account details
     document.getElementById('accountForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -193,13 +176,11 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('Личные данные сохранены!');
     });
     
-    // Avatar click handler
     userAvatar.addEventListener('click', function(e) {
         e.stopPropagation();
         toggleAccountModal();
     });
     
-    // Close modals when clicking outside
     window.addEventListener('click', function(e) {
         if (e.target === authModal) {
             toggleAuthModal();
@@ -209,11 +190,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Close buttons
     document.querySelector('.close-auth').addEventListener('click', toggleAuthModal);
     document.querySelector('.close-account').addEventListener('click', toggleAccountModal);
     
-    // Show notification
     function showNotification(message) {
         const notification = document.createElement('div');
         notification.className = 'notification';
@@ -232,15 +211,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Product filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
             
-            // Add active class to clicked button
             this.classList.add('active');
             
             const filter = this.getAttribute('data-filter');
@@ -260,7 +236,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Cart functionality
     const cart = {
         items: JSON.parse(localStorage.getItem('cartItems')) || [],
         
@@ -371,7 +346,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Initialize cart
     function initCart() {
         cart.updateUI();
         
@@ -442,7 +416,6 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification(`Заказ #${order.id} успешно оформлен!`);
     }
 
-    // Add to cart buttons
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productCard = this.closest('.product-card');
@@ -457,7 +430,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Scroll to section
     document.querySelector('.scroll-btn').addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelector('.tea-house').scrollIntoView({
@@ -465,7 +437,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Scroll progress
     window.addEventListener('scroll', function() {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -473,7 +444,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.scroll-progress').style.width = scrollProgress + '%';
     });
 
-    // Active nav link highlighting
     function highlightActiveSection() {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -500,12 +470,10 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', highlightActiveSection);
     highlightActiveSection();
 
-    // Initialize
     function init() {
         checkAuthStatus();
         initCart();
         
-        // Add event listeners for account links
         document.querySelectorAll('[href="#account"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
